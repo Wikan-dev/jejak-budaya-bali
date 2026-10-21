@@ -17,6 +17,9 @@
   <!-- Texture overlay untuk vibe urban street-art / spray wall -->
   <div class="spray-texture-bg" aria-hidden="true"></div>
 
+  <!-- Background Layer: Ornamen Ukiran Patra Punggel Khas Bali (SVG Vector) -->
+  <div class="bali-carving-layer" aria-hidden="true"></div>
+
   <!-- Header Navigasi Bergaya Street / Graffiti Tag -->
   <header class="site-header">
     <a href="#beranda" class="brand">
@@ -97,11 +100,73 @@
     <button class="btn-circle-jump font-hand" id="btnScrollDown" title="Era Berikutnya">▼</button>
   </aside>
 
-  <!-- Footer Bergaya Urban Wall -->
+  <!-- ========================================================================
+       FOOTER: INTERACTIVE TOOLKIT & USEFUL FEATURES UNTUK USER
+       ======================================================================== -->
   <footer class="site-footer">
-    <div class="footer-doodle-tag font-graffiti">TAKSU BALI ABADI</div>
-    <p class="footer-quote font-hand">“Tradisi bukan tentang memuja abu masa lalu, tapi menjaga apinya tetap berkobar.”</p>
-    <p class="footer-sub">Dokumentasi Sejarah Nyata Kebudayaan Bali (1800 - 2020an) • Gaya Urban Street Heritage.</p>
+    <!-- Utility Section: Sangat Bermanfaat untuk Tugas, Belajar & Berbagi -->
+    <div class="footer-utility-card">
+      <div class="utility-header">
+        <span class="utility-badge font-hand">Fitur Bermanfaat Untuk Kamu 💡</span>
+        <h3 class="font-graffiti">KOTAK PERALATAN PEMBACA</h3>
+        <p class="font-hand">Salin kutipan tugas, unduh ringkasan, atau coba ketik aksara Bali langsung.</p>
+      </div>
+
+      <div class="utility-grid">
+        <!-- 1. Quick Citation Generator -->
+        <div class="utility-item">
+          <div class="utility-icon">📚</div>
+          <h4 class="font-graffiti">Sitasi Cepat Tugas</h4>
+          <p>Butuh referensi untuk tugas atau laporan? Klik tombol untuk menyalin format daftar pustaka instan.</p>
+          <button class="util-action-btn font-hand" id="btnCopyCitation">
+            📋 Salin Format Sitasi (APA)
+          </button>
+        </div>
+
+        <!-- 2. Mini Aksara Bali Converter Demo -->
+        <div class="utility-item">
+          <div class="utility-icon">✍️</div>
+          <h4 class="font-graffiti">Ketik Aksara Bali</h4>
+          <p>Simulasi digitalisasi aksara. Pilih kata untuk melihat guratannya:</p>
+          <div class="aksara-interactive-box">
+            <select id="aksaraSelect" class="aksara-select font-hand">
+              <option value="ᬑᬁ ᬲ᭄ᬯᬲ᭄ᬢ᭄ᬬᬲ᭄ᬢᬸ (Om Swastyastu)">Om Swastyastu</option>
+              <option value="ᬢᬓ᭄ᬲᬸ ᬩᬮᬶ (Taksu Bali)">Taksu Bali</option>
+              <option value="ᬢ᭄ᬭᬶ ᬳᬶᬢ ᬓᬭᬡ (Tri Hita Karana)">Tri Hita Karana</option>
+              <option value="ᬲᬸᬩᬓ᭄ (Subak)">Subak</option>
+              <option value="ᬮᭀᬦ᭄ᬢᬭ᭄ (Lontar)">Lontar</option>
+            </select>
+            <div class="aksara-result-display" id="aksaraOutput">ᬑᬁ ᬲ᭄ᬯᬲ᭄ᬢ᭄ᬬᬲ᭄ᬢᬸ (Om Swastyastu)</div>
+          </div>
+        </div>
+
+        <!-- 3. Share & Bookmark Link -->
+        <div class="utility-item">
+          <div class="utility-icon">🔗</div>
+          <h4 class="font-graffiti">Bagikan Arsip</h4>
+          <p>Bagikan linimasa sejarah ini ke teman kelompok atau media sosial kamu.</p>
+          <div class="share-btn-group">
+            <button class="util-action-btn font-hand" id="btnCopyShareLink">
+              🔗 Salin Tautan Website
+            </button>
+            <button class="util-action-btn font-hand" id="btnBackTopFooter">
+              ⇮ Kembali Ke Atas
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toast Feedback Popup -->
+      <div class="toast-feedback" id="toastFeedback" role="status" aria-live="polite">
+        Tersalin ke clipboard! 🎉
+      </div>
+    </div>
+
+    <div class="footer-bottom-info">
+      <div class="footer-doodle-tag font-graffiti">TAKSU BALI ABADI</div>
+      <p class="footer-quote font-hand">“Tradisi bukan tentang memuja abu masa lalu, tapi menjaga apinya tetap berkobar.”</p>
+      <p class="footer-sub">Dokumentasi Sejarah Nyata Kebudayaan Bali (1800 - 2020an) • Disusun Ringkas, Valid, & Stylish.</p>
+    </div>
   </footer>
 
   <!-- Scripts -->

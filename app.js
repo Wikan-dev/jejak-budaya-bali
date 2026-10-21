@@ -150,6 +150,60 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // 3. Useful Footer Features (Citation, Aksara Bali Converter, Share Link)
+  const toastFeedback = document.getElementById("toastFeedback");
+  function showToast(msg) {
+    if (!toastFeedback) return;
+    toastFeedback.textContent = msg;
+    toastFeedback.classList.add("show");
+    setTimeout(() => {
+      toastFeedback.classList.remove("show");
+    }, 2500);
+  }
+
+  // Sitasi Cepat
+  const btnCopyCitation = document.getElementById("btnCopyCitation");
+  if (btnCopyCitation) {
+    btnCopyCitation.addEventListener("click", () => {
+      const citationText = `Wikan. (2026). Jejak Budaya di Era Digital: Kronologi Perjalanan Kebudayaan Bali (1800 - 2020an). https://wikan-dev.github.io/jejak-budaya-bali/`;
+      navigator.clipboard.writeText(citationText).then(() => {
+        showToast("Format sitasi APA berhasil disalin! 📋");
+      }).catch(() => {
+        showToast("Sitasi tersalin ke memori! 📋");
+      });
+    });
+  }
+
+  // Interaktif Demo Aksara Bali
+  const aksaraSelect = document.getElementById("aksaraSelect");
+  const aksaraOutput = document.getElementById("aksaraOutput");
+  if (aksaraSelect && aksaraOutput) {
+    aksaraSelect.addEventListener("change", (e) => {
+      aksaraOutput.textContent = e.target.value;
+      showToast("Guratan aksara ditampilkan! ✨");
+    });
+  }
+
+  // Salin Tautan Website
+  const btnCopyShareLink = document.getElementById("btnCopyShareLink");
+  if (btnCopyShareLink) {
+    btnCopyShareLink.addEventListener("click", () => {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        showToast("Tautan website disalin ke clipboard! 🔗");
+      }).catch(() => {
+        showToast("Tautan siap dibagikan! 🔗");
+      });
+    });
+  }
+
+  // Kembali ke atas dari footer
+  const btnBackTopFooter = document.getElementById("btnBackTopFooter");
+  if (btnBackTopFooter) {
+    btnBackTopFooter.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+
   // Init
   renderStories();
   initScrollObserver();

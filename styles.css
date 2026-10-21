@@ -39,6 +39,9 @@
   --arrow-color: #ffea00;
   --arrow-shadow: 0 0 15px rgba(255, 234, 0, 0.5);
 
+  --carving-opacity: 0.045;
+  --carving-stroke: #ffea00;
+
   --font-graffiti: 'Permanent Marker', cursive, sans-serif;
   --font-hand: 'Kalam', cursive, sans-serif;
   --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
@@ -72,6 +75,9 @@
   --arrow-border: #1c1d21;
   --arrow-color: #e64a19;
   --arrow-shadow: 4px 4px 0px #1c1d21;
+
+  --carving-opacity: 0.06;
+  --carving-stroke: #b33912;
 }
 
 /* --------------------------------------------------------------------------
@@ -116,6 +122,19 @@ body {
     radial-gradient(circle at 50% 50%, rgba(255, 234, 0, 0.04) 0%, transparent 60%);
   pointer-events: none;
   z-index: 0;
+}
+
+/* Background Layer: Ukiran Khas Bali (Patra Punggel / Spiraling Floral Motif) */
+.bali-carving-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: var(--carving-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23ffea00' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3C!-- Motif Patra Punggel Bali --%3E%3Cpath d='M100 100 C80 70, 40 70, 30 100 C20 130, 60 160, 90 140 C110 125, 100 105, 90 110 C80 115, 80 125, 88 128'/%3E%3Cpath d='M100 100 C120 70, 160 70, 170 100 C180 130, 140 160, 110 140 C90 125, 100 105, 110 110 C120 115, 120 125, 112 128'/%3E%3Cpath d='M100 100 C70 120, 70 160, 100 170 C130 180, 160 140, 140 110 C125 90, 105 100, 110 90 C115 80, 125 80, 128 88'/%3E%3Cpath d='M100 100 C70 80, 70 40, 100 30 C130 20, 160 60, 140 90 C125 110, 105 100, 110 110 C115 120, 125 120, 128 112'/%3E%3Ccircle cx='100' cy='100' r='12'/%3E%3Ccircle cx='100' cy='100' r='5' fill='%23ffea00'/%3E%3Ccircle cx='30' cy='30' r='8' stroke-dasharray='3,3'/%3E%3Ccircle cx='170' cy='170' r='8' stroke-dasharray='3,3'/%3E%3Cpath d='M0 0 L30 30 M200 0 L170 30 M0 200 L30 170 M200 200 L170 170'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  background-repeat: repeat;
+  transition: opacity 0.3s ease;
 }
 
 /* --------------------------------------------------------------------------
@@ -629,13 +648,191 @@ body {
   box-shadow: 5px 5px 0px var(--graffiti-pink);
 }
 
-/* Footer Urban Style */
+/* --------------------------------------------------------------------------
+   FOOTER BERGAYA URBAN WALL & TOOLKIT INTERAKTIF YANG USEFUL
+   -------------------------------------------------------------------------- */
 .site-footer {
   border-top: 3px dashed var(--border-sketch);
-  padding: 4.5rem 1.5rem 3.5rem;
-  text-align: center;
+  padding: 5rem 1.5rem 3.5rem;
   position: relative;
   z-index: 1;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.footer-utility-card {
+  max-width: 980px;
+  margin: 0 auto 4rem;
+  background: var(--bg-card);
+  border: var(--card-border);
+  border-radius: 24px 12px 28px 14px;
+  box-shadow: var(--card-shadow);
+  padding: 2.5rem 2rem;
+  position: relative;
+  transition: var(--transition-theme);
+}
+
+.utility-header {
+  text-align: center;
+  margin-bottom: 2.25rem;
+}
+
+.utility-badge {
+  display: inline-block;
+  background: var(--graffiti-cyan);
+  color: #121316;
+  font-size: 1.05rem;
+  font-weight: 700;
+  padding: 0.25rem 1rem;
+  border-radius: 15px 6px 14px 4px;
+  border: 2px solid #121316;
+  transform: rotate(-2deg);
+  margin-bottom: 0.5rem;
+}
+
+.utility-header h3 {
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  color: var(--text-main);
+  text-shadow: 2px 2px 0px var(--graffiti-orange);
+}
+
+.utility-header p {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+}
+
+.utility-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.75rem;
+}
+
+.utility-item {
+  background: rgba(0, 0, 0, 0.15);
+  border: 2px solid var(--border-sketch);
+  border-radius: 16px 8px 18px 10px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+:root[data-theme="light"] .utility-item {
+  background: #fbf9f5;
+}
+
+.utility-item:hover {
+  transform: translateY(-3px);
+  border-color: var(--graffiti-yellow);
+}
+
+.utility-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.utility-item h4 {
+  font-size: 1.25rem;
+  color: var(--text-main);
+  margin-bottom: 0.4rem;
+}
+
+.utility-item p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin-bottom: 1.25rem;
+}
+
+.util-action-btn {
+  background: var(--graffiti-yellow);
+  color: #121316;
+  border: 2px solid #121316;
+  padding: 0.55rem 1rem;
+  border-radius: 14px 6px 16px 8px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 3px 3px 0px var(--graffiti-orange);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  width: 100%;
+}
+
+.util-action-btn:hover {
+  background: var(--graffiti-cyan);
+  transform: translate(-1px, -2px);
+  box-shadow: 4px 4px 0px var(--graffiti-pink);
+}
+
+/* Demo Aksara Interactive */
+.aksara-interactive-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.aksara-select {
+  background: var(--bg-card);
+  color: var(--text-main);
+  border: 2px solid var(--text-main);
+  padding: 0.45rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  outline: none;
+}
+
+.aksara-result-display {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1.5px dashed var(--graffiti-yellow);
+  border-radius: 8px;
+  padding: 0.6rem;
+  font-size: 1.15rem;
+  text-align: center;
+  color: var(--graffiti-yellow);
+  font-weight: 700;
+  min-height: 44px;
+}
+
+:root[data-theme="light"] .aksara-result-display {
+  background: #eee6d8;
+  color: #b33912;
+  border-color: #b33912;
+}
+
+.share-btn-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+/* Toast Feedback Alert */
+.toast-feedback {
+  position: absolute;
+  bottom: -22px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--graffiti-pink);
+  color: #ffffff;
+  font-family: var(--font-graffiti);
+  font-size: 1rem;
+  padding: 0.5rem 1.5rem;
+  border-radius: 30px;
+  border: 2px solid #ffffff;
+  box-shadow: 4px 4px 0px #121316;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 20;
+}
+
+.toast-feedback.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.footer-bottom-info {
+  text-align: center;
 }
 
 .footer-doodle-tag {
@@ -698,5 +895,9 @@ body {
 
   .era-tag-badge {
     display: none;
+  }
+
+  .utility-grid {
+    grid-template-columns: 1fr;
   }
 }
