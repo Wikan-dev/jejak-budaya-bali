@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jejak Budaya di Era Digital — Perjalanan Tradisi Bali (1800 - 2020an)</title>
+  
+  <!-- Font Cormorant Garamond & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Header Navigasi -->
+  <header class="site-header">
+    <a href="#beranda" class="brand">
+      <div class="brand-symbol">ᬑ</div>
+      <div class="brand-text">
+        <h1>Jejak Budaya Bali</h1>
+        <span>Dari 1800 hingga Era Digital</span>
+      </div>
+    </a>
+    <div class="header-tag" id="liveEraBadge">1800 — 2020an</div>
+    <div class="reading-progress-bar" id="readingProgressBar"></div>
+  </header>
+
+  <!-- ========================================================================
+       LANDING PAGE (PENJELASAN RINGKAS & MANUSIAWI)
+       ======================================================================== -->
+  <section class="hero-section" id="beranda">
+    <div class="hero-pill">
+      ✦ Perjalanan Sejarah & Kebudayaan
+    </div>
+
+    <h1 class="hero-title">
+      Jejak Budaya di <span>Era Digital</span>
+    </h1>
+
+    <p class="hero-desc">
+      Selamat datang. Website ini menceritakan kisah perjalanan budaya Bali melintasi lebih dari dua abad (1800–2020an). 
+      Dari masa perjuangan menjaga kedaulatan tanah leluhur, berseminya kesenian rakyat di banjar, 
+      hingga bagaimana aksara lontar kuno kini bernapas di papan ketik smartphone dan layar digital.
+    </p>
+
+    <a href="#kisah-kronologi" class="hero-cta">
+      Mulai Membaca Kisah
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path d="M12 5v14M19 12l-7 7-7-7"/>
+      </svg>
+    </a>
+  </section>
+
+  <!-- ========================================================================
+       KRONOLOGI SCROLLABLE DENGAN PANAH NYATA DI TENGAH
+       ======================================================================== -->
+  <main class="timeline-section" id="kisah-kronologi">
+    <div class="timeline-intro">
+      <h2>Lintasan Waktu Peradaban</h2>
+      <p>Gulir ke bawah untuk mengikuti alur tahun dari masa ke masa</p>
+    </div>
+
+    <!-- Timeline Flow Container -->
+    <div class="timeline-flow" id="storyList"></div>
+  </main>
+
+  <!-- Floating Jump Arrows (Quick Scroll) -->
+  <aside class="floating-jump-dock" aria-label="Navigasi Cepat">
+    <button class="btn-circle-jump" id="btnScrollUp" title="Era Sebelumnya">▲</button>
+    <button class="btn-circle-jump" id="btnScrollDown" title="Era Berikutnya">▼</button>
+  </aside>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p class="footer-motto">“Tradisi bukan tentang memuja abu masa lalu, tapi menjaga apinya tetap menyala.”</p>
+    <p>Dokumentasi Sejarah Nyata Kebudayaan Bali • Disusun Ringkas, Hangat, & Manusiawi.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
