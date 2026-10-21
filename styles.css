@@ -1,36 +1,82 @@
 /* ==========================================================================
-   JEJAK BUDAYA DI ERA DIGITAL - HUMANIST & FLOWING STYLE
-   Hangat, Luwes, Manusiawi, dengan Indikator Panah Nyata di Tengah
+   JEJAK BUDAYA DI ERA DIGITAL - STYLISH GRAFFITI & STREET-ART HERITAGE
+   Karakteristik:
+   - Tipografi Marker / Graffiti (Permanent Marker + Kalam)
+   - Doodle border tidak simetris (border-radius bergelombang, shadow offset tebal)
+   - Warna kontras berenergi (Neon Yellow, Spray Orange, Electric Cyan, Hot Pink)
+   - Mendukung Dark Mode & Light Mode dengan transisi halus
+   - Tanda panah nyata di tengah sumbu linimasa bergaya semprotan grafiti
    ========================================================================== */
 
+/* --------------------------------------------------------------------------
+   DESIGN TOKENS: DARK (DEFAULT) & LIGHT THEME
+   -------------------------------------------------------------------------- */
+:root[data-theme="dark"],
 :root {
-  --bg-main: #131211;
-  --bg-surface: #1B1917;
-  --bg-card: #23201D;
-  --bg-card-hover: #2B2723;
+  --bg-wall: #121316;
+  --bg-card: #1c1d22;
+  --bg-card-hover: #24262c;
+  --bg-nav: rgba(18, 19, 22, 0.92);
 
-  --accent-terrakotta: #D95D39;
-  --accent-gold: #E5A93C;
-  --accent-sand: #F5EBE1;
-  --accent-leaf: #3D7058;
+  --text-main: #f5f6f8;
+  --text-secondary: #c0c4cc;
+  --text-muted: #848a96;
 
-  --text-primary: #F5EFEB;
-  --text-secondary: #B8ADA3;
-  --text-muted: #857A70;
+  --graffiti-yellow: #ffea00;
+  --graffiti-orange: #ff5722;
+  --graffiti-pink: #ff2a85;
+  --graffiti-cyan: #00e5ff;
+  --graffiti-lime: #76ff03;
 
-  --border-soft: rgba(229, 169, 60, 0.18);
-  --border-warm: rgba(217, 93, 57, 0.35);
+  --border-sketch: #363943;
+  --card-border: 2px solid #ffea00;
+  --card-shadow: 6px 6px 0px rgba(255, 87, 34, 0.55), 10px 10px 0px rgba(0, 0, 0, 0.8);
+  --card-shadow-hover: 8px 8px 0px #00e5ff, 14px 14px 0px rgba(0, 0, 0, 0.95);
+  
+  --timeline-line: linear-gradient(180deg, #ffea00 0%, #ff5722 50%, #00e5ff 100%);
+  --arrow-bg: #1c1d22;
+  --arrow-border: #ffea00;
+  --arrow-color: #ffea00;
+  --arrow-shadow: 0 0 15px rgba(255, 234, 0, 0.5);
 
-  --font-serif: 'Cormorant Garamond', Georgia, serif;
-  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-graffiti: 'Permanent Marker', cursive, sans-serif;
+  --font-hand: 'Kalam', cursive, sans-serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
 
-  --radius-card: 22px;
-  --radius-img: 16px;
-  --shadow-warm: 0 16px 36px -12px rgba(0, 0, 0, 0.65);
-  --shadow-hover: 0 22px 48px -10px rgba(0, 0, 0, 0.85);
-  --transition: all 0.35s cubic-bezier(0.2, 0.8, 0.25, 1);
+  --transition-theme: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+:root[data-theme="light"] {
+  --bg-wall: #f4efe6;
+  --bg-card: #ffffff;
+  --bg-card-hover: #faf7f2;
+  --bg-nav: rgba(244, 239, 230, 0.94);
+
+  --text-main: #1c1d21;
+  --text-secondary: #4a4f5a;
+  --text-muted: #717786;
+
+  --graffiti-yellow: #f59e0b;
+  --graffiti-orange: #e64a19;
+  --graffiti-pink: #d81b60;
+  --graffiti-cyan: #0097a7;
+  --graffiti-lime: #43a047;
+
+  --border-sketch: #d5cbbe;
+  --card-border: 2.5px solid #1c1d21;
+  --card-shadow: 6px 6px 0px #e64a19, 10px 10px 0px rgba(28, 29, 33, 0.25);
+  --card-shadow-hover: 8px 8px 0px #0097a7, 14px 14px 0px rgba(28, 29, 33, 0.35);
+
+  --timeline-line: linear-gradient(180deg, #f59e0b 0%, #e64a19 50%, #0097a7 100%);
+  --arrow-bg: #ffffff;
+  --arrow-border: #1c1d21;
+  --arrow-color: #e64a19;
+  --arrow-shadow: 4px 4px 0px #1c1d21;
+}
+
+/* --------------------------------------------------------------------------
+   GLOBAL RESET & TYPOGRAPHY
+   -------------------------------------------------------------------------- */
 * {
   margin: 0;
   padding: 0;
@@ -39,218 +85,356 @@
 
 html {
   scroll-behavior: smooth;
-  color-scheme: dark;
 }
 
 body {
-  font-family: var(--font-sans);
-  background-color: var(--bg-main);
-  color: var(--text-primary);
-  line-height: 1.7;
+  font-family: var(--font-body);
+  background-color: var(--bg-wall);
+  color: var(--text-main);
+  line-height: 1.65;
   overflow-x: hidden;
   position: relative;
-  background-image: 
-    radial-gradient(circle at 10% 15%, rgba(217, 93, 57, 0.06) 0%, transparent 45%),
-    radial-gradient(circle at 90% 80%, rgba(229, 169, 60, 0.05) 0%, transparent 50%);
-  background-attachment: fixed;
+  transition: var(--transition-theme);
 }
 
-/* Header Ringan & Manis */
+.font-graffiti {
+  font-family: var(--font-graffiti);
+  letter-spacing: 1px;
+}
+
+.font-hand {
+  font-family: var(--font-hand);
+}
+
+/* Subtle gritty spray wall texture */
+.spray-texture-bg {
+  position: fixed;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 12% 18%, rgba(255, 87, 34, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 88% 78%, rgba(0, 229, 255, 0.08) 0%, transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(255, 234, 0, 0.04) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* --------------------------------------------------------------------------
+   HEADER BERGAYA GRAFFITI TAGGING & THEME TOGGLE
+   -------------------------------------------------------------------------- */
 .site-header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  height: 64px;
-  background: rgba(19, 18, 17, 0.88);
+  height: 68px;
+  background: var(--bg-nav);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border-soft);
+  border-bottom: 2px dashed var(--border-sketch);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 2rem;
+  padding: 0 1.75rem;
   z-index: 100;
+  transition: var(--transition-theme);
 }
 
 .brand {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.85rem;
   text-decoration: none;
-  color: var(--text-primary);
+  color: var(--text-main);
 }
 
-.brand-symbol {
-  width: 34px;
-  height: 34px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, var(--accent-terrakotta), var(--accent-gold));
-  color: #131211;
-  font-weight: 700;
-  font-family: var(--font-serif);
-  font-size: 1.25rem;
+.brand-tag {
+  width: 40px;
+  height: 40px;
+  background: var(--graffiti-yellow);
+  color: #121316;
+  font-weight: 800;
+  font-family: var(--font-graffiti);
+  font-size: 1.4rem;
   display: grid;
   place-items: center;
+  border-radius: 8px 16px 6px 14px;
+  border: 2px solid var(--text-main);
+  box-shadow: 3px 3px 0px var(--graffiti-orange);
+  transform: rotate(-3deg);
+  transition: transform 0.2s ease;
+}
+
+.brand:hover .brand-tag {
+  transform: rotate(4deg) scale(1.08);
 }
 
 .brand-text h1 {
-  font-size: 1.05rem;
-  font-weight: 700;
-  letter-spacing: 0.3px;
+  font-size: 1.25rem;
+  line-height: 1.1;
+  color: var(--text-main);
+  text-shadow: 1px 1px 0px var(--graffiti-pink);
 }
 
 .brand-text span {
-  font-size: 0.74rem;
-  color: var(--text-secondary);
+  font-size: 0.85rem;
+  color: var(--graffiti-orange);
+  font-weight: 700;
   display: block;
 }
 
-.header-tag {
-  font-size: 0.8rem;
-  color: var(--accent-gold);
-  background: rgba(229, 169, 60, 0.1);
-  padding: 0.3rem 0.8rem;
-  border-radius: 20px;
-  border: 1px solid var(--border-soft);
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.era-tag-badge {
+  background: var(--bg-card);
+  color: var(--graffiti-yellow);
+  border: 1.5px solid var(--graffiti-yellow);
+  padding: 0.25rem 0.85rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: 12px 6px 15px 4px;
+  box-shadow: 2px 2px 0px var(--text-main);
+  transform: rotate(1deg);
+}
+
+/* Tombol Toggle Theme (Light / Dark) */
+.theme-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--bg-card);
+  color: var(--text-main);
+  border: 2px solid var(--text-main);
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px 8px 18px 10px;
+  cursor: pointer;
+  box-shadow: 3px 3px 0px var(--graffiti-cyan);
+  font-size: 0.95rem;
+  font-weight: 700;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.theme-toggle-btn:hover {
+  transform: translate(-1px, -2px);
+  box-shadow: 4px 4px 0px var(--graffiti-pink);
+}
+
+.theme-toggle-btn .sun-icon {
+  display: none;
+}
+.theme-toggle-btn .moon-icon {
+  display: inline-block;
+}
+
+:root[data-theme="light"] .theme-toggle-btn .sun-icon {
+  display: inline-block;
+}
+:root[data-theme="light"] .theme-toggle-btn .moon-icon {
+  display: none;
 }
 
 .reading-progress-bar {
   position: absolute;
-  bottom: 0;
+  bottom: -2px;
   left: 0;
-  height: 2.5px;
-  background: linear-gradient(90deg, var(--accent-terrakotta), var(--accent-gold));
+  height: 4px;
+  background: linear-gradient(90deg, var(--graffiti-yellow), var(--graffiti-orange), var(--graffiti-pink), var(--graffiti-cyan));
   width: 0%;
   transition: width 0.1s linear;
 }
 
-/* ==========================================================================
-   LANDING PAGE (HERO SECTION) - HANGAT & MENGAJAK
-   ========================================================================== */
+/* --------------------------------------------------------------------------
+   HERO / LANDING PAGE - SKETCH & GRAFFITI ART
+   -------------------------------------------------------------------------- */
 .hero-section {
-  min-height: 90vh;
+  position: relative;
+  min-height: 85vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 7rem 1.5rem 4rem;
-  max-width: 900px;
+  padding: 7.5rem 1.5rem 4rem;
+  max-width: 950px;
   margin: 0 auto;
+  z-index: 1;
 }
 
-.hero-pill {
+.hero-doodle-badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.45rem 1.1rem;
-  border-radius: 30px;
-  background: rgba(217, 93, 57, 0.12);
-  border: 1px solid var(--border-warm);
-  color: #FFA285;
-  font-size: 0.85rem;
-  font-weight: 600;
-  margin-bottom: 1.75rem;
+  gap: 0.6rem;
+  padding: 0.4rem 1.25rem;
+  background: var(--bg-card);
+  border: 2px dashed var(--graffiti-orange);
+  color: var(--graffiti-orange);
+  font-size: 1.05rem;
+  font-weight: 700;
+  border-radius: 25px 12px 30px 8px;
+  box-shadow: 3px 3px 0px var(--graffiti-yellow);
+  margin-bottom: 1.5rem;
+  transform: rotate(-1.5deg);
+}
+
+.spray-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--graffiti-pink);
+  display: inline-block;
 }
 
 .hero-title {
-  font-family: var(--font-serif);
-  font-size: clamp(2.6rem, 6vw, 4.4rem);
-  font-weight: 700;
-  line-height: 1.18;
-  margin-bottom: 1.5rem;
+  font-size: clamp(2.4rem, 6.5vw, 4.6rem);
+  font-weight: 900;
+  line-height: 1.15;
+  margin-bottom: 1.75rem;
+  color: var(--text-main);
   letter-spacing: -0.5px;
 }
 
-.hero-title span {
-  color: var(--accent-gold);
-  font-style: italic;
+.graffiti-highlight {
+  display: inline-block;
+  color: var(--graffiti-yellow);
+  text-shadow: 
+    3px 3px 0px var(--graffiti-orange),
+    6px 6px 0px #000;
+  transform: rotate(-1deg) skewX(-4deg);
+  padding: 0 0.5rem;
+  background: rgba(255, 42, 133, 0.12);
+  border-bottom: 4px solid var(--graffiti-pink);
+  border-radius: 4px;
+}
+
+:root[data-theme="light"] .graffiti-highlight {
+  color: #121316;
+  text-shadow: 
+    2px 2px 0px var(--graffiti-yellow),
+    4px 4px 0px rgba(0, 0, 0, 0.2);
+  background: #ffea00;
+  border-bottom: 4px solid #e64a19;
+}
+
+.hero-sketch-box {
+  background: var(--bg-card);
+  border: 2.5px solid var(--text-main);
+  border-radius: 16px 28px 14px 26px;
+  box-shadow: var(--card-shadow);
+  padding: 1.75rem 2rem;
+  max-width: 780px;
+  margin-bottom: 2.5rem;
+  transform: rotate(0.5deg);
+  transition: var(--transition-theme);
 }
 
 .hero-desc {
-  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  font-size: clamp(1rem, 2vw, 1.2rem);
   color: var(--text-secondary);
   line-height: 1.75;
-  max-width: 740px;
-  margin-bottom: 2.5rem;
 }
 
 .hero-cta {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  background: linear-gradient(135deg, var(--accent-gold), var(--accent-terrakotta));
-  color: #131211;
-  font-weight: 700;
-  font-size: 1rem;
-  padding: 0.95rem 2rem;
-  border-radius: 30px;
+  background: var(--graffiti-yellow);
+  color: #121316;
+  font-size: 1.25rem;
+  font-weight: 800;
+  padding: 1rem 2.25rem;
+  border-radius: 30px 10px 28px 12px;
+  border: 3px solid #121316;
+  box-shadow: 6px 6px 0px var(--graffiti-orange);
   text-decoration: none;
-  box-shadow: 0 8px 25px rgba(217, 93, 57, 0.35);
-  transition: var(--transition);
+  transform: rotate(-2deg);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .hero-cta:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 35px rgba(217, 93, 57, 0.5);
-  color: #000;
+  transform: rotate(1deg) scale(1.05);
+  box-shadow: 8px 8px 0px var(--graffiti-pink);
+  background: var(--graffiti-cyan);
 }
 
-/* ==========================================================================
-   SCROLLABLE TIMELINE DENGAN PANAH NYATA DI TENGAH
-   ========================================================================== */
+.cta-arrow-icon {
+  animation: bounceDown 1.6s infinite ease-in-out;
+}
+
+@keyframes bounceDown {
+  0%, 100% { transform: translateY(-2px); }
+  50% { transform: translateY(4px); }
+}
+
+.hero-doodle-sticker {
+  margin-top: 2rem;
+  color: var(--graffiti-pink);
+  font-size: 1.15rem;
+  font-weight: 700;
+  transform: rotate(1.5deg);
+}
+
+/* --------------------------------------------------------------------------
+   TIMELINE SECTION: DENGAN PANAH NYATA GRAFFITI DI SUMBU TENGAH
+   -------------------------------------------------------------------------- */
 .timeline-section {
   position: relative;
   max-width: 1040px;
   margin: 0 auto;
-  padding: 2rem 1.5rem 8rem;
+  padding: 3rem 1.5rem 8rem;
+  z-index: 1;
 }
 
 .timeline-intro {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 5rem;
+}
+
+.intro-tag {
+  display: inline-block;
+  color: var(--graffiti-cyan);
+  font-size: 1.2rem;
+  font-weight: 700;
+  transform: rotate(-3deg);
+  margin-bottom: 0.35rem;
 }
 
 .timeline-intro h2 {
-  font-family: var(--font-serif);
-  font-size: 2.4rem;
-  color: var(--text-primary);
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--text-main);
+  text-shadow: 2px 2px 0px var(--graffiti-orange);
   margin-bottom: 0.5rem;
 }
 
-.timeline-intro p {
-  color: var(--text-secondary);
-  font-size: 1rem;
+.intro-sub {
+  font-size: 1.15rem;
+  color: var(--text-muted);
 }
 
-/* Container Timeline & Sumbu Panah Tengah */
+/* Sumbu Garis Tengah */
 .timeline-flow {
   position: relative;
 }
 
-/* Garis sumbu tengah */
 .timeline-flow::before {
   content: '';
   position: absolute;
   left: 50%;
   top: 0;
-  bottom: 40px;
-  width: 3px;
-  background: linear-gradient(
-    to bottom,
-    var(--accent-gold) 0%,
-    var(--accent-terrakotta) 50%,
-    var(--accent-gold) 100%
-  );
+  bottom: 60px;
+  width: 5px;
+  background: var(--timeline-line);
   transform: translateX(-50%);
-  opacity: 0.45;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(255, 234, 0, 0.4);
 }
 
-/* Setiap Card Item */
+/* Item Milestone */
 .story-item {
   position: relative;
-  margin-bottom: 5.5rem;
+  margin-bottom: 6rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -261,89 +445,88 @@ body {
   flex-direction: row-reverse;
 }
 
-/* Tanda Panah Beneran di Sumbu Tengah */
+/* Tanda Panah Fisik Graffiti di Sumbu Tengah */
 .timeline-arrow-anchor {
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: var(--bg-surface);
-  border: 2px solid var(--accent-gold);
-  box-shadow: 0 0 18px rgba(229, 169, 60, 0.35);
+  width: 54px;
+  height: 54px;
+  border-radius: 14px 20px 12px 22px;
+  background: var(--arrow-bg);
+  border: 3px solid var(--arrow-border);
+  color: var(--arrow-color);
+  box-shadow: var(--arrow-shadow);
   display: grid;
   place-items: center;
   z-index: 5;
-  transition: var(--transition);
+  transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
 }
 
 .timeline-arrow-anchor svg {
-  width: 22px;
-  height: 22px;
-  stroke: var(--accent-gold);
-  fill: none;
-  animation: floatArrowDown 2s infinite ease-in-out;
+  width: 26px;
+  height: 26px;
+  stroke: currentColor;
+  stroke-width: 3.5;
+  animation: sprayArrowAnim 1.8s infinite ease-in-out;
 }
 
-@keyframes floatArrowDown {
-  0%, 100% { transform: translateY(-2px); }
-  50% { transform: translateY(3px); }
+@keyframes sprayArrowAnim {
+  0%, 100% { transform: translateY(-3px) scale(1); }
+  50% { transform: translateY(4px) scale(1.08); }
 }
 
 .story-item:hover .timeline-arrow-anchor {
-  background: var(--accent-gold);
-  border-color: #FFF;
-  box-shadow: 0 0 25px rgba(229, 169, 60, 0.7);
-  transform: translate(-50%, -50%) scale(1.12);
+  background: var(--graffiti-yellow);
+  color: #121316;
+  border-color: #121316;
+  box-shadow: 4px 4px 0px var(--graffiti-orange);
+  transform: translate(-50%, -50%) rotate(8deg) scale(1.15);
 }
 
-.story-item:hover .timeline-arrow-anchor svg {
-  stroke: #131211;
-}
-
-/* Card Konten */
+/* Kartu Cerita Bergaya Urban Sketchpad */
 .story-card {
-  width: calc(50% - 50px);
+  width: calc(50% - 55px);
   background: var(--bg-card);
-  border: 1px solid var(--border-soft);
-  border-radius: var(--radius-card);
+  border: var(--card-border);
+  border-radius: 20px 10px 24px 12px;
   padding: 1.75rem;
-  box-shadow: var(--shadow-warm);
-  transition: var(--transition);
+  box-shadow: var(--card-shadow);
+  transition: var(--transition-theme), transform 0.25s ease, box-shadow 0.25s ease;
   position: relative;
   overflow: hidden;
 }
 
 .story-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--accent-gold);
+  transform: translateY(-5px) rotate(0.5deg);
   background: var(--bg-card-hover);
-  box-shadow: var(--shadow-hover);
+  box-shadow: var(--card-shadow-hover);
 }
 
-/* Gambar Internet Asli yang Indah */
+/* Frame Gambar Arsip Internet */
 .story-image-wrap {
   width: 100%;
-  height: 230px;
-  border-radius: var(--radius-img);
+  height: 220px;
+  border-radius: 12px 18px 10px 16px;
   overflow: hidden;
   margin-bottom: 1.25rem;
-  background: #111;
+  background: #000;
+  border: 2px solid var(--text-main);
   position: relative;
+  box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.4);
 }
 
 .story-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s ease;
+  transition: transform 0.5s ease;
   display: block;
 }
 
 .story-card:hover .story-image {
-  transform: scale(1.05);
+  transform: scale(1.06);
 }
 
 .story-image-caption {
@@ -351,123 +534,138 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, transparent 100%);
-  padding: 1.25rem 0.85rem 0.5rem;
-  font-size: 0.72rem;
-  color: #E2D9D0;
-  font-style: italic;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 20%, transparent 100%);
+  padding: 1.2rem 0.85rem 0.45rem;
+  font-size: 0.78rem;
+  color: #f0f0f0;
+  font-family: var(--font-hand);
 }
 
-/* Teks dan Penjelasan */
-.story-year {
+/* Teks dan Elemen Cerita */
+.story-year-tag {
   display: inline-block;
-  font-family: var(--font-sans);
-  font-weight: 700;
-  font-size: 0.84rem;
-  color: var(--accent-gold);
-  background: rgba(229, 169, 60, 0.12);
-  padding: 0.25rem 0.75rem;
-  border-radius: 20px;
-  margin-bottom: 0.6rem;
-  border: 1px solid var(--border-soft);
+  background: var(--graffiti-yellow);
+  color: #121316;
+  font-family: var(--font-graffiti);
+  font-size: 0.95rem;
+  padding: 0.25rem 0.85rem;
+  border-radius: 12px 4px 14px 6px;
+  border: 2px solid #121316;
+  margin-bottom: 0.75rem;
+  box-shadow: 3px 3px 0px var(--graffiti-orange);
+  transform: rotate(-1deg);
 }
 
 .story-title {
-  font-family: var(--font-serif);
-  font-size: 1.6rem;
-  font-weight: 700;
-  line-height: 1.3;
+  font-size: 1.45rem;
+  line-height: 1.25;
   margin-bottom: 0.85rem;
-  color: #FFF;
+  color: var(--text-main);
 }
 
 .story-desc {
-  font-size: 0.96rem;
+  font-size: 0.98rem;
   color: var(--text-secondary);
-  line-height: 1.68;
+  line-height: 1.7;
 }
 
-/* Panah Navigasi Antar Tahun di dalam Card */
+/* Tombol Panah Navigasi di Bawah Card */
 .story-nav-btn {
-  margin-top: 1.25rem;
+  margin-top: 1.35rem;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   background: transparent;
-  border: 1px solid var(--border-soft);
-  color: var(--text-primary);
-  font-size: 0.82rem;
-  font-weight: 600;
-  padding: 0.45rem 0.95rem;
-  border-radius: 20px;
+  border: 2px solid var(--text-main);
+  color: var(--text-main);
+  font-family: var(--font-graffiti);
+  font-size: 0.9rem;
+  padding: 0.5rem 1.15rem;
+  border-radius: 20px 8px 18px 10px;
   cursor: pointer;
-  transition: var(--transition);
+  box-shadow: 3px 3px 0px var(--graffiti-cyan);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
 .story-nav-btn:hover {
-  background: var(--accent-terrakotta);
-  border-color: var(--accent-terrakotta);
-  color: #FFF;
-  transform: translateX(3px);
+  background: var(--graffiti-orange);
+  color: #ffffff;
+  border-color: #121316;
+  transform: translate(2px, -2px);
+  box-shadow: 5px 5px 0px var(--graffiti-yellow);
 }
 
-/* Floating Bottom Jump Arrow */
+/* Floating Jump Dock */
 .floating-jump-dock {
   position: fixed;
-  bottom: 1.75rem;
-  right: 1.75rem;
+  bottom: 2rem;
+  right: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.6rem;
   z-index: 90;
 }
 
 .btn-circle-jump {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: rgba(35, 32, 29, 0.9);
-  backdrop-filter: blur(8px);
-  border: 1px solid var(--border-soft);
-  color: var(--accent-gold);
+  width: 46px;
+  height: 46px;
+  border-radius: 12px 18px 10px 16px;
+  background: var(--bg-card);
+  border: 2.5px solid var(--text-main);
+  color: var(--graffiti-yellow);
+  font-size: 1.2rem;
+  font-weight: 800;
   cursor: pointer;
   display: grid;
   place-items: center;
-  transition: var(--transition);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  box-shadow: 4px 4px 0px var(--graffiti-orange);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .btn-circle-jump:hover {
-  background: var(--accent-gold);
-  color: #131211;
-  transform: scale(1.1);
+  background: var(--graffiti-yellow);
+  color: #121316;
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 5px 5px 0px var(--graffiti-pink);
 }
 
-/* Footer Hangat */
+/* Footer Urban Style */
 .site-footer {
-  border-top: 1px solid var(--border-soft);
-  padding: 4rem 1.5rem 3rem;
+  border-top: 3px dashed var(--border-sketch);
+  padding: 4.5rem 1.5rem 3.5rem;
   text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-doodle-tag {
+  display: inline-block;
+  background: var(--graffiti-pink);
+  color: #fff;
+  font-size: 1.35rem;
+  padding: 0.4rem 1.5rem;
+  border-radius: 20px 8px 24px 6px;
+  border: 2.5px solid #121316;
+  box-shadow: 4px 4px 0px var(--graffiti-yellow);
+  transform: rotate(-2deg);
+  margin-bottom: 1.25rem;
+}
+
+.footer-quote {
+  font-size: 1.3rem;
+  color: var(--text-main);
+  margin-bottom: 0.6rem;
+}
+
+.footer-sub {
+  font-size: 0.88rem;
   color: var(--text-muted);
 }
 
-.site-footer p {
-  font-size: 0.9rem;
-  margin-bottom: 0.5rem;
-}
-
-.footer-motto {
-  font-family: var(--font-serif);
-  font-size: 1.2rem;
-  font-style: italic;
-  color: var(--accent-gold);
-  margin-bottom: 1rem;
-}
-
-/* ==========================================================================
+/* --------------------------------------------------------------------------
    RESPONSIVE DESIGN (TABLET & SMARTPHONE)
-   ========================================================================== */
-@media (max-width: 820px) {
+   -------------------------------------------------------------------------- */
+@media (max-width: 840px) {
   .timeline-flow::before {
     left: 24px;
   }
@@ -476,8 +674,8 @@ body {
   .story-item:nth-child(even) {
     flex-direction: column;
     align-items: flex-start;
-    padding-left: 60px;
-    margin-bottom: 3.5rem;
+    padding-left: 64px;
+    margin-bottom: 4rem;
   }
 
   .timeline-arrow-anchor {
@@ -494,7 +692,11 @@ body {
     padding: 0 1rem;
   }
 
-  .header-tag {
+  .brand-text h1 {
+    font-size: 1.05rem;
+  }
+
+  .era-tag-badge {
     display: none;
   }
 }

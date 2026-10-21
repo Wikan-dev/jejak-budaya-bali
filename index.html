@@ -1,65 +1,90 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jejak Budaya di Era Digital — Perjalanan Tradisi Bali (1800 - 2020an)</title>
+  <title>Jejak Budaya di Era Digital — Kronologi Budaya Bali (1800 - 2020an)</title>
   
-  <!-- Font Cormorant Garamond & Plus Jakarta Sans -->
+  <!-- Font Graffiti / Urban Marker & Modern Display: Permanent Marker, Kalam, Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Permanent+Marker&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Rock+Salt&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- Header Navigasi -->
+  <!-- Texture overlay untuk vibe urban street-art / spray wall -->
+  <div class="spray-texture-bg" aria-hidden="true"></div>
+
+  <!-- Header Navigasi Bergaya Street / Graffiti Tag -->
   <header class="site-header">
     <a href="#beranda" class="brand">
-      <div class="brand-symbol">ᬑ</div>
+      <div class="brand-tag">ᬑ</div>
       <div class="brand-text">
-        <h1>Jejak Budaya Bali</h1>
-        <span>Dari 1800 hingga Era Digital</span>
+        <h1 class="font-graffiti">Jejak Budaya Bali</h1>
+        <span class="font-hand">1800 ➔ Era Digital</span>
       </div>
     </a>
-    <div class="header-tag" id="liveEraBadge">1800 — 2020an</div>
+
+    <div class="header-controls">
+      <div class="era-tag-badge font-hand" id="liveEraBadge">1846 — 2020an</div>
+      
+      <!-- Tombol Switch Light / Dark Mode -->
+      <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Ganti Mode Terang / Gelap" title="Ganti Mode Tampilan">
+        <span class="theme-icon sun-icon">☀️</span>
+        <span class="theme-icon moon-icon">🌙</span>
+        <span class="theme-label font-hand">Mode</span>
+      </button>
+    </div>
+
     <div class="reading-progress-bar" id="readingProgressBar"></div>
   </header>
 
   <!-- ========================================================================
-       LANDING PAGE (PENJELASAN RINGKAS & MANUSIAWI)
+       LANDING PAGE (STYLISH GRAFFITI / SKETCH STREET ART STYLE)
        ======================================================================== -->
   <section class="hero-section" id="beranda">
-    <div class="hero-pill">
-      ✦ Perjalanan Sejarah & Kebudayaan
+    <div class="hero-doodle-badge font-hand">
+      <span class="spray-dot"></span>
+      <span>Arsip Budaya • Corat-Coret Garis Waktu</span>
+      <span class="spray-dot"></span>
     </div>
 
     <h1 class="hero-title">
-      Jejak Budaya di <span>Era Digital</span>
+      JEJAK BUDAYA <br>
+      <span class="graffiti-highlight font-graffiti">DI ERA DIGITAL</span>
     </h1>
 
-    <p class="hero-desc">
-      Selamat datang. Website ini menceritakan kisah perjalanan budaya Bali melintasi lebih dari dua abad (1800–2020an). 
-      Dari masa perjuangan menjaga kedaulatan tanah leluhur, berseminya kesenian rakyat di banjar, 
-      hingga bagaimana aksara lontar kuno kini bernapas di papan ketik smartphone dan layar digital.
-    </p>
+    <div class="hero-sketch-box">
+      <p class="hero-desc">
+        Kisah nyata perjalanan budaya Bali melintasi lebih dari dua abad (1800–2020an). 
+        Dari kobaran api perlawanan kedaulatan tanah leluhur, berseminya kesenian di banjar-banjar desa, 
+        hingga guratan lontar aksara purba yang kini bernapas di dalam layar smartphone dan kecerdasan buatan.
+      </p>
+    </div>
 
-    <a href="#kisah-kronologi" class="hero-cta">
-      Mulai Membaca Kisah
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+    <a href="#kisah-kronologi" class="hero-cta font-graffiti">
+      <span>TELUSURI WAKTU</span>
+      <svg class="cta-arrow-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
         <path d="M12 5v14M19 12l-7 7-7-7"/>
       </svg>
     </a>
+
+    <!-- Doodle hand-drawn sticker accent -->
+    <div class="hero-doodle-sticker font-hand">
+      ✦ Scroll kebawah untuk melompat tahun ✦
+    </div>
   </section>
 
   <!-- ========================================================================
-       KRONOLOGI SCROLLABLE DENGAN PANAH NYATA DI TENGAH
+       KRONOLOGI SCROLLABLE DENGAN PANAH GRAFFITI DI TENGAH
        ======================================================================== -->
   <main class="timeline-section" id="kisah-kronologi">
     <div class="timeline-intro">
-      <h2>Lintasan Waktu Peradaban</h2>
-      <p>Gulir ke bawah untuk mengikuti alur tahun dari masa ke masa</p>
+      <span class="intro-tag font-hand">#AlurWaktuNyata</span>
+      <h2 class="font-graffiti">LINTASAN SEJARAH BALI</h2>
+      <p class="font-hand intro-sub">Ikuti jejak anak panah di tengah menuju masa kini ➔</p>
     </div>
 
     <!-- Timeline Flow Container -->
@@ -68,14 +93,15 @@
 
   <!-- Floating Jump Arrows (Quick Scroll) -->
   <aside class="floating-jump-dock" aria-label="Navigasi Cepat">
-    <button class="btn-circle-jump" id="btnScrollUp" title="Era Sebelumnya">▲</button>
-    <button class="btn-circle-jump" id="btnScrollDown" title="Era Berikutnya">▼</button>
+    <button class="btn-circle-jump font-hand" id="btnScrollUp" title="Era Sebelumnya">▲</button>
+    <button class="btn-circle-jump font-hand" id="btnScrollDown" title="Era Berikutnya">▼</button>
   </aside>
 
-  <!-- Footer -->
+  <!-- Footer Bergaya Urban Wall -->
   <footer class="site-footer">
-    <p class="footer-motto">“Tradisi bukan tentang memuja abu masa lalu, tapi menjaga apinya tetap menyala.”</p>
-    <p>Dokumentasi Sejarah Nyata Kebudayaan Bali • Disusun Ringkas, Hangat, & Manusiawi.</p>
+    <div class="footer-doodle-tag font-graffiti">TAKSU BALI ABADI</div>
+    <p class="footer-quote font-hand">“Tradisi bukan tentang memuja abu masa lalu, tapi menjaga apinya tetap berkobar.”</p>
+    <p class="footer-sub">Dokumentasi Sejarah Nyata Kebudayaan Bali (1800 - 2020an) • Gaya Urban Street Heritage.</p>
   </footer>
 
   <!-- Scripts -->

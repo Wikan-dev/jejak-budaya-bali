@@ -1,6 +1,7 @@
 /**
- * JEJAK BUDAYA DI ERA DIGITAL - HUMANIST TIMELINE
- * Menangani render story cards, pembacaan progress scroll, dan navigasi panah.
+ * JEJAK BUDAYA DI ERA DIGITAL - STYLISH GRAFFITI & THEME TOGGLE
+ * Menangani render story cards bergaya urban art, pembacaan progress scroll,
+ * navigasi panah, dan peralihan Dark/Light mode secara instan.
  */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -9,10 +10,24 @@ document.addEventListener("DOMContentLoaded", () => {
   const liveEraBadge = document.getElementById("liveEraBadge");
   const btnScrollUp = document.getElementById("btnScrollUp");
   const btnScrollDown = document.getElementById("btnScrollDown");
+  const themeToggleBtn = document.getElementById("themeToggleBtn");
 
   let currentStoryIndex = 0;
 
-  // Render Story Cards
+  // 1. Theme Toggle Logic (Dark / Light) dengan LocalStorage
+  const savedTheme = localStorage.getItem("jejak-theme") || "dark";
+  document.documentElement.setAttribute("data-theme", savedTheme);
+
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener("click", () => {
+      const currentTheme = document.documentElement.getAttribute("data-theme") || "dark";
+      const nextTheme = currentTheme === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", nextTheme);
+      localStorage.setItem("jejak-theme", nextTheme);
+    });
+  }
+
+  // 2. Render Story Cards Bergaya Graffiti / Urban Sketchpad
   function renderStories() {
     storyList.innerHTML = "";
 
@@ -26,15 +41,15 @@ document.addEventListener("DOMContentLoaded", () => {
       storyEl.dataset.index = index;
 
       storyEl.innerHTML = `
-        <!-- Tanda Panah Beneran di Tengah Sumbu Timeline -->
-        <div class="timeline-arrow-anchor" title="Alur Masa: ${item.year}">
-          <svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="12" y1="5" x2="12" y2="19"></line>
-            <polyline points="19 12 12 19 5 12"></polyline>
+        <!-- Tanda Panah Fisik Graffiti di Sumbu Tengah Linimasa -->
+        <div class="timeline-arrow-anchor" title="Alur Waktu Menuju Masa Berikutnya">
+          <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="4" x2="12" y2="20"></line>
+            <polyline points="19 13 12 20 5 13"></polyline>
           </svg>
         </div>
 
-        <!-- Kartu Cerita -->
+        <!-- Kartu Cerita Urban Street-Art -->
         <div class="story-card">
           <div class="story-image-wrap">
             <img 
@@ -45,26 +60,26 @@ document.addEventListener("DOMContentLoaded", () => {
               onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80';"
             />
             <div class="story-image-caption">
-              ${item.imageCaption}
+              📌 ${item.imageCaption}
             </div>
           </div>
 
-          <span class="story-year">${item.year}</span>
-          <h3 class="story-title">${item.title}</h3>
+          <span class="story-year-tag">${item.year}</span>
+          <h3 class="story-title font-graffiti">${item.title}</h3>
           <p class="story-desc">${item.description}</p>
 
           ${
             !isLast
-              ? `<button class="story-nav-btn" data-next="${nextIdx}">
-                  Menuju ${culturalHistoryData[nextIdx].year}
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              ? `<button class="story-nav-btn font-graffiti" data-next="${nextIdx}">
+                  <span>Lompat ke ${culturalHistoryData[nextIdx].year}</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="12" y1="5" x2="12" y2="19"></line>
                     <polyline points="19 12 12 19 5 12"></polyline>
                   </svg>
                 </button>`
-              : `<span style="display:inline-block; margin-top:1rem; font-size:0.8rem; color:var(--accent-gold); font-weight:600;">
-                  ✦ Masa Kini & Masa Depan Budaya Digital
-                 </span>`
+              : `<div style="margin-top:1.25rem; font-size:1.05rem; color:var(--graffiti-pink); font-weight:700;" class="font-hand">
+                  ✦ Masa Kini & Masa Depan Budaya Digital Bali
+                 </div>`
           }
         </div>
       `;
@@ -112,7 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
     }, {
-      threshold: 0.4
+      threshold: 0.35
     });
 
     document.querySelectorAll(".story-item").forEach(item => {
