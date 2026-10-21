@@ -150,6 +150,34 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // 2.5. Realtime Clock di Header
+  const realtimeClock = document.getElementById("realtimeClock");
+  function updateClock() {
+    if (!realtimeClock) return;
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString("id-ID", { hour12: false });
+    realtimeClock.textContent = `🕒 ${timeStr}`;
+  }
+  updateClock();
+  setInterval(updateClock, 1000);
+
+  // 2.6. Focus Mode Toggle (Sembunyikan Header & Footer)
+  const focusModeBtn = document.getElementById("focusModeBtn");
+  if (focusModeBtn) {
+    focusModeBtn.addEventListener("click", () => {
+      const isFocus = document.body.getAttribute("data-focus") === "true";
+      if (isFocus) {
+        document.body.removeAttribute("data-focus");
+        focusModeBtn.querySelector(".theme-icon").textContent = "🔍";
+        showToast("Mode Fokus dinonaktifkan 👁️");
+      } else {
+        document.body.setAttribute("data-focus", "true");
+        focusModeBtn.querySelector(".theme-icon").textContent = "✖️";
+        showToast("Mode Fokus diaktifkan! 📵");
+      }
+    });
+  }
+
   // 3. Useful Footer Features (Citation, Aksara Bali Converter, Share Link)
   const toastFeedback = document.getElementById("toastFeedback");
   function showToast(msg) {
